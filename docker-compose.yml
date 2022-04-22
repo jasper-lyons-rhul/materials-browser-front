@@ -46,6 +46,6 @@ networks:
 
 volumes:
   mysql_data:
-    external: true
+    external: false
   mysql_database:
-    external: true
+    external: false

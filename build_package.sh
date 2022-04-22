@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+set -x
+
 root=$(pwd)
 
 if [ ! -d "node_modules" ]

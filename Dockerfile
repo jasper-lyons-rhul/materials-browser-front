@@ -41,5 +41,8 @@ EXPOSE 80 443
 # Change workdir to root of api part of project.
 WORKDIR /var/www/html/materials-browser/api
 
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=compose
+
 # Run Bash script which start all necessaries services.
 CMD ["/docker-services.sh"]
