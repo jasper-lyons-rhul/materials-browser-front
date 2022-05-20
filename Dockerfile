@@ -3,11 +3,17 @@
 # Install AlmaLinux 8.
 FROM almalinux:8
 
-# Update Centos 8 and install Apache and PHP 7.4.
-RUN dnf update -y \
+
+# Clean the cache: https://stackoverflow.com/questions/59993633/yum-dnf-error-failed-to-download-metadata-for-repo
+RUN dnf clean all && rm -r /var/cache/dnf  && dnf upgrade -y && dnf update -y 
+
+# Update AlmaLinux 8 and install Apache and PHP 8.1
+RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y \
+&& dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm \
+&& dnf update -y && dnf upgrade -y \
 && dnf install -y vim bash unzip httpd php php-{fpm,cli,gd,pdo,xml,mbstring,zip,mysqlnd,opcache,json,intl,process} \
 && dnf module -y reset php \
-&& dnf module -y enable php:7.4 \
+&& dnf module -y enable php:remi-8.1 \
 && dnf update -y
 
 # Copy application files and scripts usefull for Dockerfile.

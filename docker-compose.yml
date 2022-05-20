@@ -27,6 +27,7 @@ services:
         - MYSQL_DATABASE=${MYSQL_DATABASE}
         - SYMFONY_APP_ENV=${SYMFONY_APP_ENV}
         - SYMFONY_APP_DEBUG=${SYMFONY_APP_DEBUG}
+    platform: linux/amd64
     ports:
       - "80:80"
       - "443:443"
